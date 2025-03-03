@@ -1,1 +1,352 @@
- 
+/*-------------------------------------------*\
+    Mobile Responsive Styles (≤768px)
+\*-------------------------------------------*/
+
+@media only screen and (max-width: 768px) {
+  /* General window adjustments */
+  .window-style {
+    position: fixed !important;
+    height: calc(100% - 36px) !important; /* Subtract navbar height */
+    width: 100% !important;
+    min-height: unset !important;
+    min-width: unset !important;
+    margin: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+  
+  /* Also ensure .window class is consistent */
+  .window {
+    height: calc(100% - 36px) !important; /* Subtract navbar height */
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Fullscreen should also account for navbar */
+  .fullscreen {
+    height: calc(100% - 36px) !important; /* Subtract navbar height */
+    max-height: calc(100% - 36px) !important;
+  }
+
+  /* Window title and top bar */
+  .window-name {
+    font-size: 14px !important;
+    max-width: 75vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Make buttons more tappable */
+  .minimize-button,
+  .expand-button,
+  .close-button {
+    height: 24px !important;
+    width: 24px !important;
+    margin: 2px !important;
+  }
+  
+  /* Adjust content padding */
+  .content {
+    height: calc(100% - 36px) !important; /* Account for window title bar */
+    overflow-y: auto !important;
+    padding: 8px !important;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* File explorer adjustments */
+  .file-explorer {
+    height: calc(100% - 80px) !important;
+  }
+  
+  .grid-container-photos {
+    justify-content: space-around;
+  }
+  
+  /* Icon adjustments - REMOVED problematic .icon class styling */
+  
+  /* Fix specific icon types without affecting desktop icons */
+  .icon-photos {
+    margin: 8px !important;
+    width: 60px !important;
+  }
+  
+  /* Fix all icon image types */
+  .icon-image {
+    width: 24px !important;
+    height: 24px !important;
+    margin-right: 5px !important;
+    display: inline-block !important;
+  }
+  
+  .icon-image-photos {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  /* Top bar icon images need specific adjustment */
+  .top-bar-window .icon-image,
+  .navbar-item .icon-image,
+  .navbar-item-depressed .icon-image {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 4px !important;
+  }
+  
+  /* Better form controls for touch */
+  input, 
+  textarea, 
+  select {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+  
+  /* REMOVED problematic button selector */
+  
+  /* Top bar navigation text */
+  .top-bar-text span {
+    padding: 8px !important;
+    margin-right: 16px !important;
+  }
+  
+  /* Fix Start button and icon */
+  .start-menu {
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  .start-menu .flex {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 4px !important;
+  }
+  
+  .start-icon {
+    width: 18px !important;
+    height: 18px !important;
+    object-fit: contain !important;
+    margin-right: 2px !important;
+  }
+  
+  .start-menu button {
+    font-size: 14px !important;
+    padding-left: 2px !important;
+  }
+  
+  /* Status bars with better touch targets */
+  .bottom-bar {
+    height: 32px !important;
+  }
+  
+  .bar {
+    height: 100% !important;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Fix scrolling issues */
+  .file-explorer,
+  .content {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* StartMenu adjustments */
+  .menu {
+    width: 100% !important;
+    left: 0 !important;
+    bottom: 36px !important;
+  }
+  
+  .bar {
+    padding: 10px !important;
+  }
+  
+  /* Fix navbar items */
+  .navbar-item, 
+  .navbar-item-depressed {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Navbar container adjustments */
+  .navbar-container {
+    height: 36px !important;
+    padding: 2px 2px 0 2px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Time display fixes */
+  .time {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 4px !important;
+  }
+  
+  .time img {
+    margin-right: 4px !important;
+  }
+  
+  /* Add this to ensure navbar is always visible */
+  #app {
+    height: 100% !important;
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .screen {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    height: calc(100vh - 36px) !important; /* Subtract navbar height */
+    max-height: calc(100vh - 36px) !important;
+  }
+  
+  /* Adjust navbar to ensure it stays at bottom */
+  #navbar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    margin-bottom: 0 !important;
+    background-color: rgb(195, 195, 195) !important;
+  }
+  
+  /* Ensure windows don't overflow and push navbar off screen */
+  .fullscreen {
+    max-height: calc(100vh - 36px) !important;
+    overflow-y: auto !important;
+  }
+  
+  /* Add cascading effect for nested windows */
+  #ImagePreviewWindow {
+    top: 2vh !important;
+  }
+  
+  /* Random folder window IDs will get cascading effect */
+  [id^="FolderWindow"] {
+    top: 5vh !important;
+  }
+  
+  /* Special handling for windows with highest z-index */
+  .window-style[style*="z-index: 9"] {
+    top: 0 !important;
+    z-index: 55 !important;
+  }
+  
+  /* Ensure windows don't completely cover each other */
+  .top-bar-window {
+    height: 36px !important; /* Taller header for better touch targets */
+  }
+  
+  /* Add visual indication of stacking with shadow */
+  .window-style {
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Ensure the navbar stays above all windows */
+  #navbar {
+    z-index: 9999 !important;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* Further size adjustments for very small screens */
+  .window-name {
+    font-size: 12px !important;
+    max-width: 60vw;
+  }
+  
+  .icon-text {
+    font-size: 10px !important;
+  }
+  
+  /* Simplify interfaces */
+  .top-bar-text span {
+    margin-right: 8px !important;
+  }
+  
+  /* Ensure content is properly visible */
+  .content {
+    overflow-y: auto !important;
+  }
+  
+  /* Make tap targets even larger */
+  .icon-photos {
+    width: 70px !important;
+  }
+  
+  /* Improve grid layout */
+  .grid-container-photos {
+    justify-content: space-between;
+    padding: 0 4px;
+  }
+  
+  [id^="FolderWindow"], 
+  #ImagePreviewWindow {
+    top: 0 !important; /* On very small screens, maximize screen real estate */
+  }
+}
+
+/* Improve iPad mini specific fixes */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Force viewport height calculations */
+  :root {
+    --vh: 1vh;
+  }
+  
+  /* Main app container */
+  #app {
+    height: 100vh !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+  
+  /* Ensure screen area is scrollable and leaves room for navbar */
+  .screen {
+    height: calc(100vh - 36px) !important;
+    max-height: calc(100vh - 36px) !important;
+    overflow-y: auto !important;
+    flex: 1 0 auto !important;
+    position: relative !important;
+  }
+  
+  /* Lock navbar at bottom with higher z-index */
+  #navbar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 36px !important;
+    z-index: 99999 !important; /* Much higher z-index */
+    flex-shrink: 0 !important;
+    background-color: rgb(195, 195, 195) !important; /* Add background to ensure visibility */
+  }
+  
+  /* Fix window content vertical scrolling */
+  .window-style {
+    max-height: calc(100vh - 36px) !important;
+  }
+  
+  /* Ensure content doesn't overflow */
+  .content {
+    max-height: calc(100vh - 72px) !important; /* Account for both navbar and top bar */
+    overflow-y: auto !important;
+  }
+  
+  /* Fix for html overflow */
+  html, body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+} 

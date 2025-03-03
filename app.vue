@@ -117,6 +117,7 @@ onMounted(() => {
 @import "./assets/css/windows/app.css";
 @import "./assets/css/windows/window.css";
 @import "./assets/css/windows/appgrid.css";
+@import "./assets/css/windows/mobile.css";
 
 @font-face {
   font-family: "MS Sans Serif";

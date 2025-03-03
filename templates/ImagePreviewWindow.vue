@@ -135,15 +135,17 @@ const getImagePath = (iconImage) => {
 let isDragging = false;
 
 onMounted(() => {
-    window.value = windowsStore.getWindowById(ComponentName)
-    const draggableWindow = interact("#" + window.value.windowId)
+    window.value = windowsStore.getWindowById(ComponentName);
+    if (!window.value) {
+        window.value = windowsStore.getWindowById("ImagePreviewWindow");
+    }
+    const draggableWindow = interact("#" + window.value.windowId);
     draggableWindow
         .draggable({
             listeners: {
                 move(event) {
-                    position.value.x += event.dx
-                    position.value.y += event.dy
-                    // event.target.style.transform = `translate(${position.value.x}px, ${position.value.y}px)`
+                    position.value.x += event.dx;
+                    position.value.y += event.dy;
                 }
             },
             modifiers: [
@@ -156,11 +158,12 @@ onMounted(() => {
         })
         .on('dragstart', () => {
             isDragging = true;
-        })
+            setActiveWindow();
+        });
+    draggableWindow
         .on('dragmove', () => {
             if (isDragging) {
                 setActiveWindow();
-                // windowsStore.zIndexIncrement(window.value.windowId);
                 isDragging = false;
             }
         })

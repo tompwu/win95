@@ -55,7 +55,7 @@
 <style scoped>
 .menu {
     width: 165px;
-    height: 282px;
+    height: 350px;
     background: black;
     background: rgb(195, 195, 195);
     overflow: hidden;
@@ -70,9 +70,9 @@
     outline: rgb(222, 222, 222) 1px solid;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     font-size: 12px;
 }
+
 
 a {
     color: black;
@@ -109,7 +109,9 @@ a {
 }
 
 .socials {
-    flex-grow: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .social-image {

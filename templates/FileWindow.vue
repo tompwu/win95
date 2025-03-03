@@ -192,21 +192,14 @@ const openWindow = (file) => {
     } else if (file.type == "video") {
         console.log("SKIP")
     } else {
-        const openWindowPayload = {
+        const payload = {
             windowState: "open",
             windowId: "ImagePreviewWindow"
         }
         const contentPayload = files.value.slice(files.value.indexOf(file));
         contentPayload.push(...files.value.slice(0, files.value.indexOf(file)));
-        const payload = {
-            windowState: "close",
-            windowId: "ImagePreviewWindow",
-        }
-        windowsStore.setWindowState(payload)
-        setTimeout(() => {
-            windowsStore.setPhotoFolderContent(contentPayload)
-            windowsStore.setWindowState(openWindowPayload)
-        })
+        windowsStore.setPhotoFolderContent(contentPayload);
+        windowsStore.setWindowState(payload);
     }
 }
 

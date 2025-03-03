@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed } from "vue";
+import { computed, nextTick } from "vue";
 
 export const useWindowsStore = defineStore("windows", {
   state: () => ({
@@ -60,24 +60,23 @@ export const useWindowsStore = defineStore("windows", {
       {
         windowId: "ImagePreviewWindow",
         windowState: "close",
-        displayName: "Media Viewer",
+        displayName: "Image Preview",
         windowComponent: "ImagePreviewWindow",
         windowContent: "",
         windowContentPadding: {
-          top: "1px",
-          right: "10px",
-          bottom: "10px",
-          left: "10px",
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
         },
         position: "absolute",
-        positionX: "6vw",
-        positionY: "12vh",
-        iconImage: "file.png",
-        altText: "Photos",
+        positionX: "10vw",
+        positionY: "10vh",
+        iconImage: "photos.png",
+        altText: "Image Preview",
         fullscreen: false,
         showInAppGrid: false,
-        showInNavbar: false,
-        // imagePreview: file.src
+        showInNavbar: true,
       },
       {
         windowId: "NOSSAFLEXWindow",
@@ -1396,8 +1395,6 @@ export const useWindowsStore = defineStore("windows", {
     },
 
     setWindowState(payload) {
-      // payload = {'windowState': 'open', 'windowId': 'WindowOne'}
-
       const getArrItem = () => {
         return this.windows.find(
           (windows) => windows.windowId === payload.windowId
@@ -1405,13 +1402,15 @@ export const useWindowsStore = defineStore("windows", {
       };
 
       const window = getArrItem();
+      if (!window) return; // Guard against undefined windows
 
       let preventAppendingOpenWindow = false;
-      if (window.windowState == "open" || window.windowState == "minimize") {
+      if (window.windowState === "open" || window.windowState === "minimize") {
         preventAppendingOpenWindow = true;
       }
 
-      if (payload.windowState == "open") {
+      if (payload.windowState === "open") {
+        // First set window state
         window.windowState = payload.windowState;
         
         // Update position for mobile devices
@@ -1421,34 +1420,29 @@ export const useWindowsStore = defineStore("windows", {
           window.positionY = "auto";
         }
         
-        setTimeout(() => {
-          this.zIndexIncrement(payload.windowId);
-        }, 0);
-        setTimeout(() => {
-          this.setActiveWindow(payload.windowId);
-        }, 0);
-        if (preventAppendingOpenWindow == false) {
+        // Always bring window to front immediately
+        this.activeWindow = payload.windowId;
+        this.zIndex++;
+        
+        // Force window to front
+        nextTick(() => {
+          const windowElement = document.getElementById(payload.windowId);
+          if (windowElement) {
+            windowElement.style.zIndex = this.zIndex;
+          }
+        });
+        
+        // Ensure window is in activeWindows array
+        if (!this.activeWindows.includes(window)) {
           this.pushActiveWindow(window);
         }
-      } else if (payload.windowState == "close") {
-        setTimeout(() => {
-          window.windowState = payload.windowState;
-        }, 0);
-        setTimeout(() => {
-          this.popActiveWindow(window);
-        }, 0);
-        setTimeout(() => {
-          this.setActiveWindow("nil");
-        }, 0);
-      } else if (payload.windowState == "minimize") {
-        setTimeout(() => {
-          window.windowState = payload.windowState;
-        }, 0);
-        setTimeout(() => {
-          this.setActiveWindow("nil");
-        }, 0);
-      } else {
-        console.log("Error: windowState not found or invalid");
+      } else if (payload.windowState === "close") {
+        window.windowState = payload.windowState;
+        this.popActiveWindow(window);
+        this.setActiveWindow("nil");
+      } else if (payload.windowState === "minimize") {
+        window.windowState = payload.windowState;
+        this.setActiveWindow("nil");
       }
     },
   },
