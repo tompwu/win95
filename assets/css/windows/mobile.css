@@ -252,6 +252,62 @@
   #navbar {
     z-index: 9999 !important;
   }
+
+  /* Desktop grid container adjustments */
+  .grid-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+    padding: 16px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    grid-auto-flow: row dense !important;
+  }
+
+  .icon {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .icon .icon-image {
+    width: 72px !important;
+    height: 72px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .icon .icon-text {
+    font-size: 14px !important;
+    width: 100% !important;
+    padding: 4px !important;
+  }
+
+  /* Larger icon images */
+  .icon .icon-image {
+    width: 72px !important;
+    height: 72px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Larger icon text */
+  .icon .icon-text {
+    font-size: 14px !important;
+    width: 100% !important;
+    padding: 4px !important;
+  }
+
+  /* Better touch feedback */
+  .icon:active .icon-image {
+    transform: scale(0.95);
+  }
+
+  .icon:active .icon-text {
+    background: rgb(0, 0, 118);
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -290,6 +346,17 @@
   [id^="FolderWindow"], 
   #ImagePreviewWindow {
     top: 0 !important; /* On very small screens, maximize screen real estate */
+  }
+
+  /* Even larger icons for very small screens */
+  .grid-container {
+    gap: 12px !important;
+    padding: 12px !important;
+  }
+
+  .icon .icon-image {
+    width: 64px !important;
+    height: 64px !important;
   }
 }
 
