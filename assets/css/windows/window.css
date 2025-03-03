@@ -22,8 +22,26 @@
 
 @media only screen and (max-width: 600px) {
   .window-style {
-    min-height: 70vh;
-    min-width: 100vw;
+    position: static !important;
+    height: 95vh !important;
+    width: auto !important;
+    min-height: unset !important;
+    min-width: unset !important;
+  }
+  
+  /* Add styles for the window components */
+  .window {
+    position: static !important;
+    transform: none !important;
+    height: 95vh !important;
+    width: auto !important;
+  }
+  
+  /* Handle fullscreen mode on mobile */
+  .fullscreen {
+    width: 100% !important;
+    height: 95vh !important;
+    margin: 0 !important;
   }
 }
 
